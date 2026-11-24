@@ -1533,6 +1533,9 @@ app.use(relay.createRouter({
   limiter: relayLimiter,
 }));
 
+// OAuth 回调端点必须在 authGuard 之前，因为阿里巴巴调用时不带 session
+app.get("/api/plugins/:pluginId/auth/callback", pluginAuthRoutes);
+
 app.use(account.authGuard); // 其余 /api/* 与 /im/*（除外部回调）需要登录
 app.use("/api/session/:id", (req, res, next) => {
   if (req.method !== "GET" && deletingTasks.has(req.params.id)) return res.status(409).json({ error: "正在删除此任务，请稍候" });
