@@ -28,7 +28,7 @@ class AlibabaOAuth {
     this.authUrl = config.authUrl || 'https://login.alibaba.com/v2/common_second_part_login.htm';
 
     // 回调端点（使用本地服务器）
-    this.callbackGateway = config.callbackGateway || 'http://localhost:3801/api/plugins/alibaba-international/auth/callback';
+    this.callbackGateway = config.callbackGateway || 'http://localhost:3800/api/plugins/alibaba-international/auth/callback';
 
     // Token 端点（阿里巴巴官方API）
     this.tokenUrl = config.tokenUrl || 'https://gw.open.1688.com/openapi/param2/1/com.alibaba.account/token.oauth2.getToken';
