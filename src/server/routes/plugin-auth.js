@@ -175,7 +175,7 @@ router.post('/:pluginId/auth/revoke', async (req, res) => {
 
     if (plugin.tokenManager && typeof plugin.tokenManager.deleteToken === 'function') {
       await plugin.tokenManager.deleteToken();
-      
+
       res.json({
         success: true,
         message: '授权已撤销'
@@ -192,6 +192,91 @@ router.post('/:pluginId/auth/revoke', async (req, res) => {
       success: false,
       error: error.message
     });
+  }
+});
+
+/**
+ * GET /api/plugins/:pluginId/auth/callback
+ * OAuth 回调端点
+ */
+router.get('/:pluginId/auth/callback', async (req, res) => {
+  try {
+    const { pluginId } = req.params;
+    const { code, state } = req.query;
+
+    console.log(`[PluginAuth] 收到 OAuth 回调: pluginId=${pluginId}, state=${state}, code=${code ? '存在' : '缺失'}`);
+
+    if (!code) {
+      return res.status(400).send(`
+        <html>
+          <head><title>授权失败</title></head>
+          <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+            <h1>❌ 授权失败</h1>
+            <p>未收到授权码，请重试。</p>
+            <button onclick="window.close()">关闭窗口</button>
+          </body>
+        </html>
+      `);
+    }
+
+    const plugin = await getPluginInstance(pluginId);
+    if (!plugin) {
+      return res.status(404).send(`
+        <html>
+          <head><title>插件不存在</title></head>
+          <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+            <h1>❌ 插件不存在</h1>
+            <p>找不到插件: ${pluginId}</p>
+            <button onclick="window.close()">关闭窗口</button>
+          </body>
+        </html>
+      `);
+    }
+
+    // 使用授权码交换 Token
+    if (plugin.oauth && typeof plugin.oauth.exchangeCodeForToken === 'function') {
+      const tokenResult = await plugin.oauth.exchangeCodeForToken(code);
+
+      if (tokenResult && tokenResult.access_token) {
+        // 保存 Token
+        await plugin.tokenManager.saveToken({
+          access_token: tokenResult.access_token,
+          refresh_token: tokenResult.refresh_token,
+          expires_in: tokenResult.expires_in,
+          token_type: tokenResult.token_type
+        });
+
+        console.log('[PluginAuth] ✅ OAuth 授权成功');
+
+        return res.send(`
+          <html>
+            <head><title>授权成功</title></head>
+            <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+              <h1>✅ 授权成功</h1>
+              <p>您已成功授权，窗口将自动关闭...</p>
+              <script>
+                setTimeout(() => window.close(), 2000);
+              </script>
+            </body>
+          </html>
+        `);
+      }
+    }
+
+    throw new Error('Token 交换失败');
+
+  } catch (error) {
+    console.error('[PluginAuth] OAuth 回调失败:', error);
+    res.status(500).send(`
+      <html>
+        <head><title>授权失败</title></head>
+        <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+          <h1>❌ 授权失败</h1>
+          <p>${error.message}</p>
+          <button onclick="window.close()">关闭窗口</button>
+        </body>
+      </html>
+    `);
   }
 });
 
