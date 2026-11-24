@@ -1,0 +1,417 @@
+/**
+ * Accio Work 动画系统
+ * 完整的动画、过渡和交互效果规范
+ */
+
+/* ===== 核心动画参数 ===== */
+:root {
+  /* 时长 */
+  --duration-instant: 0.1s;
+  --duration-fast: 0.15s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  --duration-slower: 0.5s;
+
+  /* 缓动函数 */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* 标准过渡 */
+  --transition-all: all var(--duration-fast) var(--ease-out);
+  --transition-colors: color var(--duration-fast) var(--ease-out),
+                       background-color var(--duration-fast) var(--ease-out),
+                       border-color var(--duration-fast) var(--ease-out);
+  --transition-transform: transform var(--duration-fast) var(--ease-out);
+  --transition-opacity: opacity var(--duration-fast) var(--ease-out);
+}
+
+/* ===== 模态框动画 ===== */
+@keyframes modal-overlay-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modal-overlay-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-content-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+/* ===== 抽屉动画 ===== */
+@keyframes drawer-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ===== 淡入淡出 ===== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ===== 缩放动画 ===== */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* ===== 滑入动画 ===== */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 加载动画 ===== */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ===== 骨架屏动画 ===== */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Toast 通知动画 ===== */
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+}
+
+/* ===== 工具类 ===== */
+
+/* 标准过渡 */
+.transition-all {
+  transition: var(--transition-all);
+}
+
+.transition-colors {
+  transition: var(--transition-colors);
+}
+
+.transition-transform {
+  transition: var(--transition-transform);
+}
+
+.transition-opacity {
+  transition: var(--transition-opacity);
+}
+
+/* 动画类 */
+.animate-fade-in {
+  animation: fade-in var(--duration-normal) var(--ease-out);
+}
+
+.animate-fade-out {
+  animation: fade-out var(--duration-normal) var(--ease-out);
+}
+
+.animate-scale-in {
+  animation: scale-in var(--duration-normal) var(--ease-out);
+}
+
+.animate-slide-up {
+  animation: slide-up var(--duration-normal) var(--ease-out);
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== Ant Design 组件动画覆盖 ===== */
+
+/* 模态框 */
+.ant-modal-mask {
+  animation: fade-in var(--duration-normal) var(--ease-out);
+}
+
+.ant-modal {
+  animation: modal-content-enter var(--duration-normal) var(--ease-out);
+}
+
+/* 抽屉 */
+.ant-drawer-content-wrapper {
+  transition: transform var(--duration-normal) var(--ease-out) !important;
+}
+
+/* 下拉菜单 */
+.ant-dropdown {
+  animation: fade-in var(--duration-fast) var(--ease-out);
+}
+
+/* 消息通知 */
+.ant-message-notice {
+  animation: toast-enter var(--duration-normal) var(--ease-out);
+}
+
+/* Tooltip */
+.ant-tooltip {
+  animation: fade-in var(--duration-fast) var(--ease-out);
+}
+
+/* ===== 交互状态动画 ===== */
+
+/* 按钮点击反馈 */
+.btn-feedback {
+  transition: var(--transition-all);
+}
+
+.btn-feedback:active {
+  transform: scale(0.98);
+}
+
+/* 卡片悬停 */
+.card-hover {
+  transition: var(--transition-all);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 列表项悬停 */
+.list-item-hover {
+  transition: var(--transition-colors);
+}
+
+.list-item-hover:hover {
+  background-color: var(--color-sidebar-item-hover);
+}
+
+/* ===== 侧边栏折叠动画 ===== */
+.sidebar-collapse-transition {
+  transition: width var(--duration-normal) var(--ease-in-out),
+              min-width var(--duration-normal) var(--ease-in-out),
+              max-width var(--duration-normal) var(--ease-in-out);
+}
+
+/* ===== 页面切换动画 ===== */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-enter var(--duration-normal) var(--ease-out);
+}
+
+/* ===== 消息气泡进入动画 ===== */
+@keyframes message-bubble-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-bubble-animate {
+  animation: message-bubble-enter var(--duration-normal) var(--ease-out);
+}
+
+/* ===== 骨架屏 ===== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-chip) 0%,
+    var(--color-layer-surface) 50%,
+    var(--color-bg-chip) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ===== 加载指示器 ===== */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+/* ===== 禁用动画（遵循用户偏好）===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

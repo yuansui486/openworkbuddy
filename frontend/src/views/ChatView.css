@@ -1,0 +1,441 @@
+/* Accio Work ChatView 精确复刻 - 垂直居中布局 */
+
+.chat-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 112px);
+  background: var(--color-background);
+  border-radius: var(--radius-xl);
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: page-enter var(--duration-normal) var(--ease-out);
+  padding: 40px 24px;
+}
+
+.skill-bar {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-layer-surface);
+  animation: skill-bar-enter 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes skill-bar-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* P1优化: 技能标签关闭按钮样式 */
+.skill-bar .ant-tag {
+  border-radius: var(--radius-chip) !important;
+  padding: 4px 8px 4px 12px;
+  height: 26px;
+  line-height: 18px;
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  border: none;
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.skill-bar .ant-tag .ant-tag-close-icon {
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  transition: color 0.15s;
+}
+
+.skill-bar .ant-tag .ant-tag-close-icon:hover {
+  color: var(--color-text-primary);
+}
+
+.skill-bar .ant-tag:hover {
+  background: color-mix(in srgb, var(--color-primary-bg) 80%, var(--color-primary));
+}
+
+/* P0优化: 消息气泡间距 16px */
+.messages-container {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px;
+  scroll-behavior: smooth;
+}
+
+.messages-container > * + * {
+  margin-top: 16px;
+}
+
+.message-group + .message-group {
+  margin-top: 16px;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.dark .messages-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 当有消息时，chat-view 恢复固定高度布局 */
+.chat-view:has(.messages-container) {
+  height: calc(100vh - 112px);
+  min-height: auto;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-tertiary);
+  animation: empty-state-enter 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 欢迎区域 - 垂直居中容器 */
+.chat-welcome-section {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: welcome-section-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 确保欢迎区域内所有子元素占据全宽 */
+.chat-welcome-section > * {
+  width: 100%;
+}
+
+@keyframes welcome-section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes empty-state-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.4;
+  filter: grayscale(0.3);
+}
+
+.empty-text {
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+}
+
+.empty-hint {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  max-width: 400px;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  animation: fade-in 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 输入区域 - 有消息时固定底部 */
+.input-area {
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border-subtle);
+  background: var(--color-background);
+  transition: box-shadow 0.15s cubic-bezier(0, 0, 0.2, 1);
+  padding: 16px 24px 24px 24px;
+}
+
+/* 输入区域 - 欢迎状态下居中显示 */
+.input-area-welcome {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: box-shadow 0.15s cubic-bezier(0, 0, 0.2, 1);
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.input-area-welcome .input-container {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.input-area-welcome .input-footer {
+  margin-top: 8px;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-container {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* 输入底部操作区 */
+.input-footer {
+  margin-top: 8px;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-select-btn {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-container);
+  color: var(--color-text-secondary);
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.folder-select-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-bg-container));
+}
+
+.folder-path {
+  margin-left: 4px;
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 输入框（精确 24px 圆角，52px 单行高度）⭐ P0修复 */
+.input-container .ant-input {
+  border-radius: var(--radius-3xl) !important;
+  padding: 12px 20px !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  min-height: 52px !important;
+  max-height: 128px !important;
+  resize: none !important;
+  border: 1px solid var(--color-border) !important;
+  background: var(--color-bg-container) !important;
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1) !important;
+}
+
+.input-container .ant-input::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 0.7;
+}
+
+.input-container .ant-input:hover {
+  border-color: var(--color-border-strong) !important;
+}
+
+.input-container .ant-input:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(30, 173, 111, 0.1) !important;
+  outline: none !important;
+}
+
+.input-container .ant-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-bg-layout) !important;
+}
+
+/* 输入操作按钮 */
+.input-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.input-actions .ant-btn {
+  height: 44px;
+  min-width: 80px;
+  padding: 0 20px;
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 发送按钮 - 绿色圆形 48px */
+.input-actions .ant-btn-primary {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-primary) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(30, 173, 111, 0.2);
+}
+
+.input-actions .ant-btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(30, 173, 111, 0.3);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.input-actions .ant-btn-primary:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.input-actions .ant-btn-primary[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.input-actions .ant-btn-primary .anticon {
+  font-size: 18px;
+}
+
+.input-actions .ant-btn-primary span:not(.anticon) {
+  display: none;
+}
+
+.input-actions .ant-btn-dangerous {
+  background: var(--color-destructive);
+}
+
+.input-actions .ant-btn-dangerous:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-destructive) 90%, black);
+  box-shadow: 0 2px 4px rgba(229, 40, 40, 0.2);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .chat-view {
+    padding: 24px 16px;
+  }
+
+  .chat-welcome-section {
+    gap: 16px;
+  }
+
+  .messages-container {
+    padding: 16px;
+  }
+
+  .input-container {
+    min-height: 60px;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .input-footer {
+    padding: 0 16px 12px;
+  }
+
+  .folder-select-btn {
+    height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .folder-path {
+    max-width: 120px;
+  }
+
+  .input-container .ant-input {
+    padding: 10px 16px !important;
+    min-height: 40px !important;
+    max-height: 60px !important;
+    font-size: 13px !important;
+  }
+
+  .input-actions .ant-btn {
+    height: 40px;
+    min-width: 64px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+}
+
+/* 减少动画（可访问性） */
+@media (prefers-reduced-motion: reduce) {
+  .skill-bar,
+  .empty-state,
+  .loading-indicator,
+  .input-actions .ant-btn {
+    animation: none;
+    transition: none;
+  }
+
+  .input-actions .ant-btn-primary:hover:not(:disabled) {
+    transform: none;
+  }
+}

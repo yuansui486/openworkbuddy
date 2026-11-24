@@ -1,0 +1,353 @@
+{
+  "products": [
+    {
+      "id": "BT-EAR-001",
+      "name": "无线蓝牙耳机",
+      "nameEn": "Wireless Bluetooth Earphones",
+      "category": "Electronics",
+      "specifications": {
+        "bluetooth": "5.0",
+        "batteryCapacity": "300mAh",
+        "playTime": "6 hours",
+        "chargingTime": "1.5 hours",
+        "weight": "45g",
+        "waterproof": "IPX5",
+        "chipset": "Qualcomm QCC3040"
+      },
+      "pricing": {
+        "moq": 500,
+        "priceRanges": [
+          { "quantity": "500-999", "price": 6.5, "currency": "USD" },
+          { "quantity": "1000-4999", "price": 5.5, "currency": "USD" },
+          { "quantity": "5000+", "price": 4.8, "currency": "USD" }
+        ]
+      },
+      "certifications": ["CE", "FCC", "RoHS", "REACH"],
+      "leadTime": "30 days",
+      "packaging": {
+        "individual": "Gift box",
+        "carton": "50 pcs/carton",
+        "cartonSize": "60x40x35 cm",
+        "grossWeight": "12 kg"
+      }
+    },
+    {
+      "id": "BT-EAR-002",
+      "name": "降噪蓝牙耳机",
+      "nameEn": "Active Noise Cancelling Bluetooth Earphones",
+      "category": "Electronics",
+      "specifications": {
+        "bluetooth": "5.2",
+        "batteryCapacity": "400mAh",
+        "playTime": "8 hours",
+        "chargingTime": "2 hours",
+        "weight": "55g",
+        "waterproof": "IPX7",
+        "anc": "35dB",
+        "chipset": "Qualcomm QCC5141"
+      },
+      "pricing": {
+        "moq": 1000,
+        "priceRanges": [
+          { "quantity": "1000-2999", "price": 12.0, "currency": "USD" },
+          { "quantity": "3000-4999", "price": 10.5, "currency": "USD" },
+          { "quantity": "5000+", "price": 9.0, "currency": "USD" }
+        ]
+      },
+      "certifications": ["CE", "FCC", "RoHS", "REACH", "BSCI"],
+      "leadTime": "35 days",
+      "packaging": {
+        "individual": "Premium gift box",
+        "carton": "40 pcs/carton",
+        "cartonSize": "55x38x40 cm",
+        "grossWeight": "14 kg"
+      }
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "SUP-CN-001",
+      "name": "深圳蓝牙科技有限公司",
+      "nameEn": "Shenzhen Bluetooth Technology Co., Ltd",
+      "country": "China",
+      "province": "Guangdong",
+      "city": "Shenzhen",
+      "address": "No.123, Technology Park, Nanshan District",
+      "rating": 4.8,
+      "transactionLevel": "Gold Supplier",
+      "yearsInBusiness": 15,
+      "employeeCount": "200-500",
+      "annualRevenue": "$10M-$50M",
+      "mainProducts": ["Bluetooth Earphones", "TWS Earbuds", "Wireless Headphones"],
+      "certifications": ["ISO9001", "CE", "RoHS", "FCC", "BSCI"],
+      "responseRate": "98%",
+      "onTimeDelivery": "95%",
+      "exportMarkets": ["Europe", "North America", "Southeast Asia"],
+      "moq": 500,
+      "paymentTerms": "30% T/T in advance, 70% before shipment",
+      "contactInfo": {
+        "email": "sales@example.com",
+        "phone": "+86-755-12345678",
+        "website": "www.example.com"
+      }
+    },
+    {
+      "id": "SUP-CN-002",
+      "name": "东莞音频设备制造有限公司",
+      "nameEn": "Dongguan Audio Equipment Manufacturing Co., Ltd",
+      "country": "China",
+      "province": "Guangdong",
+      "city": "Dongguan",
+      "address": "No.456, Industrial Zone, Chang'an Town",
+      "rating": 4.6,
+      "transactionLevel": "Verified Supplier",
+      "yearsInBusiness": 10,
+      "employeeCount": "100-200",
+      "annualRevenue": "$5M-$10M",
+      "mainProducts": ["Wireless Earphones", "Audio Accessories", "Bluetooth Speakers"],
+      "certifications": ["ISO9001", "CE", "RoHS"],
+      "responseRate": "95%",
+      "onTimeDelivery": "92%",
+      "exportMarkets": ["Europe", "Middle East", "Africa"],
+      "moq": 1000,
+      "paymentTerms": "30% T/T deposit, 70% balance before delivery",
+      "contactInfo": {
+        "email": "info@example.com",
+        "phone": "+86-769-87654321",
+        "website": "www.example.com"
+      }
+    },
+    {
+      "id": "SUP-CN-003",
+      "name": "广州优质电子有限公司",
+      "nameEn": "Guangzhou Premium Electronics Co., Ltd",
+      "country": "China",
+      "province": "Guangdong",
+      "city": "Guangzhou",
+      "address": "No.789, Export Processing Zone, Baiyun District",
+      "rating": 4.9,
+      "transactionLevel": "Gold Supplier",
+      "yearsInBusiness": 12,
+      "employeeCount": "300-500",
+      "annualRevenue": "$20M-$50M",
+      "mainProducts": ["Bluetooth Devices", "Smart Audio", "Wearable Audio"],
+      "certifications": ["ISO9001", "CE", "RoHS", "FCC", "BSCI", "ISO14001"],
+      "responseRate": "99%",
+      "onTimeDelivery": "97%",
+      "exportMarkets": ["Europe", "North America", "Australia"],
+      "moq": 800,
+      "paymentTerms": "30% T/T advance, 70% against copy of B/L",
+      "contactInfo": {
+        "email": "export@example.com",
+        "phone": "+86-20-98765432",
+        "website": "www.example.com"
+      }
+    }
+  ],
+  "markets": [
+    {
+      "region": "Europe",
+      "countries": [
+        {
+          "name": "Germany",
+          "marketSize": "€1.5B",
+          "growthRate": "15%",
+          "importVolume": "$2.3B",
+          "topImportSources": ["China", "Vietnam", "Taiwan"],
+          "mainChannels": ["Amazon.de", "MediaMarkt", "Saturn"],
+          "certifications": ["CE", "RoHS", "REACH", "WEEE"],
+          "tariff": "3.5%",
+          "vat": "19%",
+          "popularPriceRange": "€50-€150",
+          "seasonality": "Q4 peak (40% of annual sales)"
+        },
+        {
+          "name": "United Kingdom",
+          "marketSize": "£1.2B",
+          "growthRate": "12%",
+          "importVolume": "$1.8B",
+          "topImportSources": ["China", "Vietnam", "South Korea"],
+          "mainChannels": ["Amazon.co.uk", "Currys", "Argos"],
+          "certifications": ["UKCA", "CE", "RoHS"],
+          "tariff": "0%",
+          "vat": "20%",
+          "popularPriceRange": "£40-£120",
+          "seasonality": "Black Friday and Christmas peak"
+        },
+        {
+          "name": "France",
+          "marketSize": "€900M",
+          "growthRate": "13%",
+          "importVolume": "$1.5B",
+          "topImportSources": ["China", "Vietnam", "Taiwan"],
+          "mainChannels": ["Amazon.fr", "Fnac", "Darty"],
+          "certifications": ["CE", "RoHS", "REACH"],
+          "tariff": "3.5%",
+          "vat": "20%",
+          "popularPriceRange": "€45-€130",
+          "seasonality": "Q4 peak, summer moderate"
+        }
+      ]
+    },
+    {
+      "region": "North America",
+      "countries": [
+        {
+          "name": "United States",
+          "marketSize": "$8.5B",
+          "growthRate": "18%",
+          "importVolume": "$12B",
+          "topImportSources": ["China", "Vietnam", "Mexico"],
+          "mainChannels": ["Amazon.com", "Best Buy", "Walmart", "Target"],
+          "certifications": ["FCC", "CE", "RoHS"],
+          "tariff": "0-7.5%",
+          "salesTax": "0-10% (varies by state)",
+          "popularPriceRange": "$50-$200",
+          "seasonality": "Q4 peak (Black Friday, Christmas)"
+        }
+      ]
+    }
+  ],
+  "competitors": [
+    {
+      "brand": "Apple AirPods",
+      "marketShare": "25%",
+      "priceRange": "$129-$549",
+      "strengths": ["Brand recognition", "Ecosystem integration", "Build quality"],
+      "weaknesses": ["High price", "Battery life"]
+    },
+    {
+      "brand": "Samsung Galaxy Buds",
+      "marketShare": "15%",
+      "priceRange": "$99-$229",
+      "strengths": ["Good value", "Android integration", "Sound quality"],
+      "weaknesses": ["iOS compatibility", "ANC performance"]
+    },
+    {
+      "brand": "Sony WF Series",
+      "marketShare": "12%",
+      "priceRange": "$79-$299",
+      "strengths": ["Excellent ANC", "Sound quality", "Battery life"],
+      "weaknesses": ["Bulky design", "Price"]
+    },
+    {
+      "brand": "Anker Soundcore",
+      "marketShare": "8%",
+      "priceRange": "$39-$129",
+      "strengths": ["Value for money", "Battery life", "Good quality"],
+      "weaknesses": ["Brand recognition", "Premium features"]
+    },
+    {
+      "brand": "JBL",
+      "marketShare": "8%",
+      "priceRange": "$49-$199",
+      "strengths": ["Brand trust", "Bass quality", "Sports focus"],
+      "weaknesses": ["Outdated designs", "Battery life"]
+    }
+  ],
+  "logistics": [
+    {
+      "mode": "Sea Freight",
+      "route": "Shenzhen to Hamburg",
+      "containerTypes": [
+        { "type": "20GP", "cost": 2200, "capacity": "28 CBM", "leadTime": "35 days" },
+        { "type": "40GP", "cost": 2800, "capacity": "58 CBM", "leadTime": "35 days" },
+        { "type": "40HQ", "cost": 3000, "capacity": "68 CBM", "leadTime": "35 days" }
+      ],
+      "additionalCosts": {
+        "customsClearance": "$200-400",
+        "portCharges": "$300-500",
+        "documentation": "$100-200"
+      }
+    },
+    {
+      "mode": "Air Freight",
+      "route": "Shenzhen to Frankfurt",
+      "pricePerKg": 4.5,
+      "currency": "USD",
+      "leadTime": "7 days",
+      "minimumCharge": "$200",
+      "additionalCosts": {
+        "fuelSurcharge": "15-20%",
+        "securityFee": "$50",
+        "handling": "$100-150"
+      }
+    },
+    {
+      "mode": "Rail Freight",
+      "route": "Shenzhen to Duisburg",
+      "pricePerContainer": 4500,
+      "currency": "USD",
+      "containerType": "40HQ",
+      "leadTime": "18-22 days",
+      "advantages": ["Faster than sea", "Cheaper than air", "Eco-friendly"]
+    }
+  ],
+  "compliance": {
+    "eu": {
+      "requiredCertifications": [
+        {
+          "name": "CE Marking",
+          "scope": "Mandatory for all wireless devices",
+          "cost": "€3,000-€5,000",
+          "leadTime": "6-8 weeks",
+          "validity": "Permanent (until product changes)"
+        },
+        {
+          "name": "RoHS",
+          "scope": "Restriction of Hazardous Substances",
+          "cost": "€1,000-€2,000",
+          "leadTime": "4-6 weeks",
+          "validity": "Permanent"
+        },
+        {
+          "name": "REACH",
+          "scope": "Chemical substances registration",
+          "cost": "€2,000-€4,000",
+          "leadTime": "8-12 weeks",
+          "validity": "Permanent"
+        },
+        {
+          "name": "WEEE",
+          "scope": "Waste electrical equipment registration",
+          "cost": "€500-€1,000/year",
+          "leadTime": "2-4 weeks",
+          "validity": "Annual renewal"
+        }
+      ],
+      "labeling": [
+        "CE mark on product and packaging",
+        "Manufacturer details",
+        "Product specifications in local language",
+        "Recycling symbol",
+        "Energy efficiency rating (if applicable)"
+      ],
+      "warranty": "Minimum 2 years (EU law requirement)"
+    },
+    "us": {
+      "requiredCertifications": [
+        {
+          "name": "FCC Certification",
+          "scope": "Mandatory for wireless devices",
+          "cost": "$2,000-$4,000",
+          "leadTime": "6-10 weeks",
+          "validity": "Permanent"
+        },
+        {
+          "name": "RoHS (voluntary)",
+          "scope": "Environmental compliance",
+          "cost": "$1,000-€2,000",
+          "leadTime": "4-6 weeks",
+          "validity": "Permanent"
+        }
+      ],
+      "labeling": [
+        "FCC ID on product",
+        "Warning labels (choking hazards, etc.)",
+        "Country of origin",
+        "Importer information"
+      ],
+      "warranty": "Varies by state, typically 1 year"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+/* Accio Work ExpertGroupsView - 统一设计规范 */
+
+.expert-groups-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-layout);
+}
+
+.expert-groups-container {
+  flex: 1;
+  padding: calc(var(--spacing) * 6);
+  overflow-y: auto;
+}
+
+.expert-groups-subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: calc(var(--spacing) * 5);
+  line-height: 1.5;
+}
+
+.expert-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: calc(var(--spacing) * 5);
+}
+
+.expert-group-card {
+  border-radius: var(--radius-xl);
+  text-align: center;
+  padding: calc(var(--spacing) * 6);
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-duration) var(--ease-out);
+  cursor: pointer;
+}
+
+.expert-group-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  border-color: var(--color-border-subtle);
+}
+
+.expert-group-card:active {
+  transform: translateY(0);
+}
+
+.group-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto calc(var(--spacing) * 4);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-text-inverse);
+  font-size: calc(var(--text-2xl) + 8px);
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border);
+  transition: transform var(--transition-fast) var(--ease-out);
+}
+
+.expert-group-card:hover .group-avatar {
+  transform: scale(1.05);
+}
+
+.group-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: calc(var(--spacing) * 3);
+  line-height: 1.5;
+}
+
+.group-member-count {
+  margin-bottom: calc(var(--spacing) * 3);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.group-description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: calc(var(--spacing) * 4);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: calc(var(--text-base) * 1.5 * 2);
+}
+
+.group-members-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+  margin-bottom: calc(var(--spacing) * 4);
+  min-height: 40px;
+}
+
+.member-avatar-small {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-inverse);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid var(--color-background);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast) var(--ease-out);
+}
+
+.member-avatar-small:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.member-more {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-chip);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid var(--color-background);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.member-more:hover {
+  background: var(--color-border);
+  transform: scale(1.1);
+}
+
+.group-chat-btn {
+  height: 36px;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.group-chat-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}

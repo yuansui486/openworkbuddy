@@ -1,0 +1,477 @@
+/* ExpertDetailModal - Accio Work 精确复刻 */
+
+.expert-detail-modal .ant-modal-content {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.expert-detail-modal .ant-modal-body {
+  padding: 0;
+  height: 80vh;
+  max-height: 800px;
+}
+
+.expert-detail-container {
+  display: flex;
+  height: 100%;
+}
+
+/* ===== 左侧 Tab 导航 - 120px ===== */
+.expert-detail-sidebar {
+  width: 120px;
+  background: #fafafa;
+  border-right: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+}
+
+.expert-detail-tabs {
+  height: 100%;
+}
+
+.expert-detail-tabs .ant-tabs-nav {
+  margin: 0;
+  padding: 12px 0;
+}
+
+.expert-detail-tabs .ant-tabs-tab {
+  margin: 0;
+  padding: 12px 16px;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  border-radius: 0;
+  background: transparent;
+  transition: all var(--transition-duration) var(--ease-out);
+}
+
+.expert-detail-tabs .ant-tabs-tab:hover {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--color-text-primary);
+}
+
+.expert-detail-tabs .ant-tabs-tab-active {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  border-left: 3px solid var(--color-primary);
+}
+
+.expert-detail-tabs .ant-tabs-ink-bar {
+  display: none;
+}
+
+/* ===== 右侧内容区域 - 760px ===== */
+.expert-detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+.expert-detail-content-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+}
+
+/* ===== 通用区块样式 ===== */
+.expert-detail-section {
+  animation: section-enter 0.2s var(--ease-out);
+}
+
+@keyframes section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+/* ===== 身份信息 ===== */
+.expert-identity-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--color-bg-layout);
+  border-radius: 12px;
+}
+
+.expert-identity-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.expert-identity-info {
+  flex: 1;
+}
+
+.expert-identity-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.expert-identity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--color-primary-bg);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* ===== 表单组 ===== */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.form-group .ant-input,
+.form-group .ant-input-textarea textarea {
+  border-radius: 8px;
+  border-color: var(--color-border);
+}
+
+.form-group .ant-input:hover,
+.form-group .ant-input-textarea textarea:hover,
+.form-group .ant-input:focus,
+.form-group .ant-input-textarea textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.expert-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.expert-tags .ant-tag {
+  margin: 0;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* ===== 插件列表 ===== */
+.plugins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plugin-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  padding: 16px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all var(--transition-duration) var(--ease-out);
+}
+
+.plugin-item:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.plugin-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.plugin-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.plugin-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.plugin-description {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== 技能列表 ===== */
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all var(--transition-duration) var(--ease-out);
+}
+
+.skill-item:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.skill-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.skill-description {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.skill-triggers {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+.skills-section {
+  margin-bottom: 32px;
+}
+
+.skills-section:last-child {
+  margin-bottom: 0;
+}
+
+.skills-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--color-text-primary);
+}
+
+/* ===== 知识库空状态 ===== */
+.knowledge-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.knowledge-empty p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+/* Knowledge Base Files List */
+.knowledge-files-list {
+  margin-top: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.knowledge-file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-background);
+  transition: background 0.2s;
+}
+
+.knowledge-file-item:hover {
+  background: var(--color-bg-layout);
+}
+
+.knowledge-file-item:last-child {
+  border-bottom: none;
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-name {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.file-size {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* Form Hint */
+.form-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+/* ===== 设置项 ===== */
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--color-bg-layout);
+  border-radius: 12px;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.setting-description {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Danger Zone */
+.danger-zone {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.danger-zone-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #ff4d4f;
+}
+
+/* ===== 底部按钮区 - 固定在右下角 ===== */
+.expert-detail-footer {
+  padding: 16px 32px;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--color-background);
+}
+
+.save-btn {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 24px;
+  font-weight: 500;
+}
+
+.save-btn:hover {
+  background: var(--color-primary-dark) !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+/* ===== 深色模式 ===== */
+.dark .expert-detail-sidebar {
+  background: #1e1e1e;
+}
+
+.dark .expert-identity-header {
+  background: var(--color-bg-layout);
+}
+
+.dark .plugin-item,
+.dark .skill-item {
+  background: var(--color-bg-container);
+  border-color: var(--color-border);
+}
+
+.dark .setting-item {
+  background: var(--color-bg-container);
+}

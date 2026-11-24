@@ -1,0 +1,66 @@
+.task-history-modal .history-modal-title {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.stat-value.success {
+  color: #52c41a;
+}
+
+.stat-value.failed {
+  color: #ff4d4f;
+}
+
+.history-tabs {
+  margin-bottom: 16px;
+}
+
+.result-text {
+  font-size: 12px;
+  color: #595959;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.error-text {
+  font-size: 12px;
+  color: #ff4d4f;
+  line-height: 1.5;
+}
+
+.task-history-modal .ant-table {
+  font-size: 13px;
+}
+
+.task-history-modal .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}

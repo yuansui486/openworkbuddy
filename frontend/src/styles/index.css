@@ -1,0 +1,60 @@
+/* Accio Work 完美复刻样式系统 */
+@import './design-tokens.css';
+@import './animations.css';
+@import './components.css';
+
+/* ===== 全局性能优化 ===== */
+* {
+  /* 防止闪烁 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+html {
+  /* 启用 GPU 加速 */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+body {
+  /* 防止页面跳动 */
+  overflow-y: scroll;
+}
+
+/* ===== Ant Design 主题定制 ===== */
+.ant-btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--color-primary-dark) !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+/* 输入框 */
+.ant-input,
+.ant-input-number,
+.ant-select-selector {
+  border-radius: var(--radius-md) !important;
+}
+
+/* 卡片 */
+.ant-card {
+  border-radius: var(--radius-lg) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* 标签 */
+.ant-tag {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ===== React App 根容器 ===== */
+#root {
+  height: 100vh;
+  overflow: hidden;
+}

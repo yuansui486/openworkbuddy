@@ -1,0 +1,137 @@
+/* AI 专家建议卡片 */
+.expert-suggestion-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: var(--color-bg-container);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  animation: expert-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.expert-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary) !important;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.expert-close-btn:hover {
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+@keyframes expert-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expert-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.expert-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-rocket);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.expert-text {
+  flex: 1;
+}
+
+.expert-message {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.expert-start-btn {
+  height: 44px;
+  padding: 0 36px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 500;
+  background: var(--color-button-dark) !important;
+  border: none !important;
+  flex-shrink: 0;
+  color: var(--color-text-inverse) !important;
+}
+
+.expert-start-btn:hover {
+  background: var(--color-button-dark-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.expert-start-btn:active {
+  transform: translateY(0);
+}
+
+.dark .expert-start-btn {
+  background: var(--color-button-dark) !important;
+  color: var(--color-text-inverse) !important;
+}
+
+.dark .expert-start-btn:hover {
+  background: var(--color-button-dark-hover) !important;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .expert-suggestion-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .expert-content {
+    width: 100%;
+  }
+
+  .expert-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .expert-icon .anticon {
+    font-size: 20px !important;
+  }
+
+  .expert-message {
+    font-size: 13px;
+  }
+
+  .expert-start-btn {
+    width: 100%;
+    height: 36px;
+  }
+}

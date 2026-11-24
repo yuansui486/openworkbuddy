@@ -2348,6 +2348,12 @@ async function renderHubPlugins(box) {
             <i>${ic("save")} ${fmtBytes(p.bytes)}</i></div>` : ""}
           ${(p.warnings || []).length ? `<div class="ds" style="font-size: 12px;color:var(--owb-warn,#b26a00)">${ic("triangle-alert")} 有零件被跳过：<br>${p.warnings.map(w => "· " + esc(w)).join("<br>")}</div>` : ""}
           ${p.homepage || p.repository ? `<div class="ds" style="font-size: 12px"><a href="${esc(p.homepage || p.repository)}" target="_blank" rel="noreferrer" style="word-break:break-all">${esc(p.homepage || p.repository)}</a></div>` : ""}
+          ${p.name === 'alibaba-international' ? `<div class="plugin-auth-status" data-plugin="${esc(p.name)}" style="margin:8px 0">
+            <button class="auth-btn unauthorized" data-plugin="${esc(p.name)}">
+              <span class="icon">🔒</span>
+              <span>授权未连接</span>
+            </button>
+          </div>` : ''}
           <div class="ops">${po ? `${p.source ? '<button class="pl-upd" title="从当初安装的地址重新拉一遍">更新</button>' : ""}<button class="pl-del">卸载</button>` : ""}</div>
         </div>`).join("")}
       ${list.length ? "" : `<div class="hub-empty">${hubState.q ? `没有找到与「${esc(hubState.q)}」匹配的插件` : (po
@@ -2406,6 +2412,201 @@ async function renderHubPlugins(box) {
       renderHubBody();
     };
   });
+
+  // 初始化授权按钮事件和状态检查
+  box.querySelectorAll(".auth-btn[data-plugin]").forEach(btn => {
+    const pluginName = btn.dataset.plugin;
+    // 绑定点击事件
+    btn.onclick = () => handlePluginAuth(pluginName);
+    // 检查授权状态
+    checkPluginAuthStatus(pluginName).then(status => {
+      updateAuthButton(pluginName, status);
+    });
+  });
+}
+
+// ---- 插件授权功能 ----
+/**
+ * 检查插件授权状态
+ * @param {string} pluginName - 插件名称
+ * @returns {Promise<{authorized: boolean, details?: any}>}
+ */
+async function checkPluginAuthStatus(pluginName) {
+  try {
+    const response = await fetch(`/api/plugins/${encodeURIComponent(pluginName)}/auth/status`);
+    if (!response.ok) {
+      // 如果接口不存在或返回错误，默认未授权
+      return { authorized: false };
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('检查授权状态失败:', error);
+    return { authorized: false };
+  }
+}
+
+/**
+ * 更新授权按钮UI状态
+ * @param {string} pluginName - 插件名称
+ * @param {{authorized: boolean, details?: any}} status - 授权状态
+ */
+function updateAuthButton(pluginName, status) {
+  const btn = document.querySelector(`.auth-btn[data-plugin="${pluginName}"]`);
+  if (!btn) return;
+
+  if (status.authorized) {
+    btn.className = 'auth-btn authorized';
+    btn.innerHTML = '<span class="icon">✓</span><span>已授权</span>';
+  } else {
+    btn.className = 'auth-btn unauthorized';
+    btn.innerHTML = '<span class="icon">🔒</span><span>授权未连接</span>';
+  }
+}
+
+/**
+ * 处理插件授权
+ * @param {string} pluginName - 插件名称
+ */
+async function handlePluginAuth(pluginName) {
+  const btn = document.querySelector(`.auth-btn[data-plugin="${pluginName}"]`);
+  if (!btn) return;
+
+  // 检查当前状态
+  const status = await checkPluginAuthStatus(pluginName);
+
+  if (status.authorized) {
+    // 已授权，询问是否撤销
+    if (!(await askConfirm({
+      title: '撤销授权',
+      hint: `确定要撤销「${pluginName}」的授权吗？撤销后需要重新授权才能使用相关功能。`,
+      ok: '撤销授权',
+      danger: true,
+    }))) return;
+
+    await revokePluginAuth(pluginName);
+    return;
+  }
+
+  // 未授权，启动授权流程
+  btn.disabled = true;
+  btn.className = 'auth-btn authorizing';
+  btn.innerHTML = '<span class="spinner"></span><span>授权中...</span>';
+
+  try {
+    // 1. 获取授权 URL
+    const response = await fetch(`/api/plugins/${encodeURIComponent(pluginName)}/auth/start`, {
+      method: 'POST'
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || '无法启动授权流程');
+    }
+
+    const { authUrl, state } = await response.json();
+
+    // 2. 打开授权窗口
+    const width = 600;
+    const height = 700;
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+
+    const authWindow = window.open(
+      authUrl,
+      'oauth-auth',
+      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
+
+    if (!authWindow) {
+      throw new Error('无法打开授权窗口，请检查浏览器弹窗设置');
+    }
+
+    // 3. 轮询授权状态
+    const maxAttempts = 60; // 最多轮询 5 分钟
+    let attempts = 0;
+
+    const checkInterval = setInterval(async () => {
+      attempts++;
+
+      // 检查窗口是否被关闭
+      if (authWindow.closed) {
+        clearInterval(checkInterval);
+        btn.disabled = false;
+        updateAuthButton(pluginName, { authorized: false });
+        return;
+      }
+
+      // 检查授权状态
+      try {
+        const checkResponse = await fetch(
+          `/api/plugins/${encodeURIComponent(pluginName)}/auth/check?state=${encodeURIComponent(state)}`
+        );
+
+        if (checkResponse.ok) {
+          const checkData = await checkResponse.json();
+
+          if (checkData.authorized) {
+            clearInterval(checkInterval);
+            authWindow.close();
+            btn.disabled = false;
+            updateAuthButton(pluginName, { authorized: true });
+            toast('授权成功！', 'circle-check');
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('检查授权状态失败:', error);
+      }
+
+      // 超时处理
+      if (attempts >= maxAttempts) {
+        clearInterval(checkInterval);
+        authWindow.close();
+        btn.disabled = false;
+        updateAuthButton(pluginName, { authorized: false });
+        toast('授权超时，请重试', 'circle-x');
+      }
+    }, 5000); // 每 5 秒检查一次
+
+  } catch (error) {
+    btn.disabled = false;
+    updateAuthButton(pluginName, { authorized: false });
+    toast('授权失败: ' + error.message, 'circle-x');
+  }
+}
+
+/**
+ * 撤销插件授权
+ * @param {string} pluginName - 插件名称
+ */
+async function revokePluginAuth(pluginName) {
+  const btn = document.querySelector(`.auth-btn[data-plugin="${pluginName}"]`);
+  if (btn) {
+    btn.disabled = true;
+    btn.className = 'auth-btn authorizing';
+    btn.innerHTML = '<span class="spinner"></span><span>撤销中...</span>';
+  }
+
+  try {
+    const response = await fetch(`/api/plugins/${encodeURIComponent(pluginName)}/auth/revoke`, {
+      method: 'POST'
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || '撤销授权失败');
+    }
+
+    updateAuthButton(pluginName, { authorized: false });
+    toast('已撤销授权', 'circle-check');
+  } catch (error) {
+    toast('撤销授权失败: ' + error.message, 'circle-x');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+    }
+  }
 }
 
 // ---- Tab 3：连接器（MCP）----

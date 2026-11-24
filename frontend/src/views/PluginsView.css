@@ -1,0 +1,43 @@
+/* Accio Work PluginsView - 统一设计规范 */
+
+.plugins-view {
+  padding: calc(var(--spacing) * 6);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.plugins-header {
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+/* P1优化: 卡片间距统一为 24px */
+.plugins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  row-gap: 24px;
+  padding: calc(var(--spacing) * 1);
+}
+
+/* 响应式布局 */
+@media (max-width: 1400px) {
+  .plugins-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .plugins-view {
+    padding: calc(var(--spacing) * 4);
+  }
+
+  .plugins-grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) * 4);
+  }
+
+  .plugins-header {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+}

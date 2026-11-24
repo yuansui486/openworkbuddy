@@ -1,0 +1,62 @@
+/* Accio Work TasksView - 统一设计规范 */
+
+.tasks-view {
+  padding: calc(var(--spacing) * 6);
+}
+
+.tasks-header {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 1);
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+.tasks-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.tasks-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+.tasks-view .ant-table {
+  font-size: var(--text-sm);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tasks-view .ant-table-thead > tr > th {
+  background: var(--color-bg-layout);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast) var(--ease-out);
+}
+
+.tasks-view .ant-table-tbody > tr {
+  transition: background var(--transition-fast) var(--ease-out);
+}
+
+/* 附加优化: 表格行高统一 48px */
+.tasks-view .ant-table-tbody > tr > td {
+  height: 48px;
+  padding: 12px 16px;
+}
+
+.tasks-view .ant-table-tbody > tr:hover {
+  background: var(--color-bg-layout);
+}
+
+.tasks-view .ant-tag {
+  margin: calc(var(--spacing) * 0.5);
+  border-radius: var(--radius-chip);
+  font-size: var(--text-xs);
+  transition: all var(--transition-fast) var(--ease-out);
+}

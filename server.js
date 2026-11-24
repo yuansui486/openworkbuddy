@@ -48,6 +48,7 @@ const { createGeoRouter } = require("./src/server/routes/geo"); // 行程卡：�
 const { createChromeRouter } = require("./src/server/routes/chrome"); // 设置 → 浏览器：配对码、连没连上、扩展文件夹
 const { createShareStore } = require("./src/domains/account/session-shares");
 const { createSessionSharesRouter } = require("./src/server/routes/session-shares");
+const pluginAuthRoutes = require("./src/server/routes/plugin-auth"); // 插件 OAuth 授权管理
 const geoPlaces = require("./src/domains/geo/places"); // 行程卡查地点：设置页要它折算高德上限、存设置时解除当天停用
 const { createComposeJobs } = require("./src/domains/media/compose-jobs"); // 一键合成的任务队列：把镜头真的拼成成片
 const taskDirs = require("./src/util/task-dirs"); // 成果按对话分文件夹：哪些根下分、文件夹叫什么
@@ -1854,6 +1855,8 @@ app.use(createGeoRouter({ getConfig: () => config }));
 // 只有这台机器的主人能导（个人桌面版或平台管理员）：~/.claude、~/.codex 是跑服务器的那个系统账号的
 // 保留已导入会话的续聊兼容；关闭新导入接口，不创建扫描器。
 app.use(createSessionImportRouter({ isOwner: isPlatformOwner }));
+// 插件 OAuth 授权管理接口
+app.use("/api/plugins", pluginAuthRoutes);
 
 // 助理身份：界面一进来就要拿它画头像，所以单开一个轻接口，不用为了个名字去拉整份设置
 // 多人服务器上成员给自己的助理另起过名字、换过头像的，看到的是他自己那份（prefs.assistantFor）

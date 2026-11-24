@@ -1,0 +1,256 @@
+/**
+ * Accio Work 设计令牌系统
+ * 完美复刻原版 UI
+ */
+
+:root {
+  /* ===== 颜色系统（像素级精确统一）===== */
+
+  /* 主色调 */
+  --color-primary: #1ead6f;          /* 品牌绿 */
+  --color-primary-hover: #17a361;    /* 悬停绿 */
+  --color-primary-dark: #148d59;     /* 深绿 */
+  --color-primary-foreground: #fff;
+  --color-primary-bg: #e6faf2;       /* 浅绿背景 */
+
+  /* 语义色彩 */
+  --color-success: #22891f;
+  --color-success-bg: #f6ffed;
+  --color-success-border: #b7eb8f;
+  --color-warning: #ff8800;
+  --color-warning-bg: #fffbe6;
+  --color-warning-border: #ffe58f;
+  --color-destructive: #e52828;
+  --color-info: #5341e3;
+
+  /* 背景颜色 */
+  --color-background: #ffffff;
+  --color-bg-layout: #fafafa;        /* 浅背景 */
+  --color-bg-container: #ffffff;
+  --color-layer-surface: #f8f8f8;
+  --color-bg-chip: #e5e5e5;
+
+  /* 文本颜色层级（从截图提取）*/
+  --color-text-primary: #1a1a1a;     /* 标题 */
+  --color-text-secondary: #666666;   /* 描述 */
+  --color-text-tertiary: #999999;    /* 辅助文字 */
+  --color-text-quaternary: #666666;
+  --color-muted-foreground: #767676;
+  --color-text-inverse: #ffffff;     /* 反色文字（深色背景上的白字）*/
+
+  /* 边框颜色（从截图提取）*/
+  --color-border: #f0f0f0;           /* 从卡片边框提取 */
+  --color-border-subtle: #f0f0f0;
+  --color-border-divider: #e8e8e8;
+  --color-border-strong: #aaa;
+
+  /* 按钮系统 */
+  --color-button-dark: #1a1a1a;      /* 深色按钮 */
+  --color-button-dark-hover: #333333;
+  --color-button-light: #f5f5f5;     /* 浅色按钮（深色模式） */
+  --color-button-light-hover: #e0e0e0;
+
+  /* 渐变系统 */
+  --gradient-rocket: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+
+  /* 侧边栏 */
+  /* P1优化: 更淡的悬停背景 */
+  --color-sidebar-item-hover: rgba(0, 0, 0, 0.03);
+  --color-sidebar-session-title: #626262;
+
+  /* ===== 间距系统 ===== */
+  --spacing: 0.25rem; /* 4px 基础单位 */
+
+  /* ===== 字体系统（从截图分析）===== */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+
+  /* 字号（从截图测量）*/
+  --text-xs: 0.75rem;    /* 12px - 辅助文字 */
+  --text-sm: 0.8125rem;  /* 13px - 描述文字 */
+  --text-base: 0.875rem; /* 14px - 按钮文字 */
+  --text-md: 1rem;       /* 16px - 卡片标题 */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px - 页面标题 */
+
+  /* 字重 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== 圆角系统（从截图测量）===== */
+  --radius-sm: 4px;
+  --radius-md: 8px;       /* 按钮、搜索框、Tab 项 */
+  --radius-lg: 12px;      /* 徽章、插件卡片 */
+  --radius-xl: 16px;      /* 卡片、模态框 */
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-chip: 6px;     /* 技能标签 ⭐ */
+  --radius-full: 9999px;  /* 圆形（头像）*/
+
+  /* ===== 阴影系统（从截图测量）===== */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+               0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+               0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+               0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+               0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* 特殊阴影（从截图）*/
+  --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.08),
+                       0 2px 8px rgba(0, 0, 0, 0.04);  /* 卡片 Hover */
+  --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);      /* 模态框 */
+  --shadow-button-hover: 0 2px 8px rgba(0, 0, 0, 0.12); /* 主按钮 Hover */
+  --shadow-dropdown: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                     0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* ===== 动画系统（从截图推测）===== */
+  --transition-fast: 0.15s;     /* 按钮、悬停 */
+  --transition-duration: 0.2s;  /* 标准（卡片、模态框）*/
+  --transition-slow: 0.3s;      /* 页面切换 */
+
+  /* Accio 精确缓动函数 ⭐ */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);           /* 主要过渡 */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);    /* 平滑动画 */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);      /* 双向 */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* 弹性效果 */
+
+  /* ===== Z-index 层级 ===== */
+  --z-popover: 10000;
+  --z-modal: 100000;
+  --z-toast: 100300;
+  --z-fullscreen: 100400;
+}
+
+/* ===== 深色模式 ===== */
+.dark {
+  --color-background: #18181b;
+  --color-bg-layout: #27272a;
+  --color-bg-container: #18181b;
+  --color-layer-surface: #18181b;
+  --color-bg-chip: #3f3f46;
+
+  --color-text-primary: #f4f4f5;
+  --color-text-secondary: #a1a1aa;
+  --color-text-tertiary: #52525b;
+  --color-text-quaternary: #a1a1aa;
+  --color-text-inverse: #1a1a1a;     /* 深色模式下的反色文字 */
+
+  --color-border: #3f3f46;
+  --color-border-subtle: #3f3f46;
+  --color-border-divider: #27272a;
+  --color-border-strong: #52525b;
+
+  --color-button-dark: #f5f5f5;      /* 深色模式下亮色按钮 */
+  --color-button-dark-hover: #e0e0e0;
+  --color-button-light: #1a1a1a;     /* 深色模式下深色按钮 */
+  --color-button-light-hover: #333333;
+
+  --color-sidebar-item-hover: rgba(255, 255, 255, 0.08);
+  --color-sidebar-session-title: #a1a1aa;
+
+  --color-primary-bg: #0d3a26;
+}
+
+/* ===== 全局样式 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-layout);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== 滚动条样式 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-full);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ===== 选中文本样式 ===== */
+::selection {
+  color: inherit;
+  background-color: #5ec7a259;
+}
+
+.dark ::selection {
+  background-color: #5ec7a273;
+}
+
+/* ===== 工具类 ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing) * 4);
+}
+
+.card {
+  background-color: var(--color-bg-container);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: calc(var(--spacing) * 4);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-duration) var(--ease-out);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-chip);
+  color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-border);
+}

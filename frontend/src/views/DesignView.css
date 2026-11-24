@@ -1,0 +1,81 @@
+/* Accio Work DesignView - 统一设计规范 */
+
+.design-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-layout);
+}
+
+.design-container {
+  flex: 1;
+  padding: calc(var(--spacing) * 6);
+  overflow-y: auto;
+}
+
+.design-content {
+  margin-top: calc(var(--spacing) * 6);
+}
+
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: calc(var(--spacing) * 5);
+  margin-top: calc(var(--spacing) * 5);
+}
+
+.design-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-duration) var(--ease-out);
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.design-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  border-color: var(--color-border-subtle);
+}
+
+.design-card:active {
+  transform: translateY(0);
+}
+
+.design-preview {
+  width: 100%;
+  height: 200px;
+  background: var(--color-bg-layout);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast) var(--ease-out);
+}
+
+.design-card:hover .design-preview {
+  background: var(--color-layer-surface);
+}
+
+.design-info {
+  padding: calc(var(--spacing) * 4);
+}
+
+.design-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: calc(var(--spacing) * 2);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.design-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}

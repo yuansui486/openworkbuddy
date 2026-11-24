@@ -1,0 +1,118 @@
+/* PageHeader - Accio Work 精确复刻 */
+
+.page-header {
+  height: 64px;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+}
+
+.page-header-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* 左侧 */
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-header-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.page-header-tutorial {
+  padding: 4px 8px;
+  height: auto;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.page-header-tutorial:hover {
+  color: var(--color-primary);
+}
+
+/* 右侧 */
+.page-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 附加优化: 搜索框统一样式 */
+.page-header-search {
+  width: 280px;
+}
+
+.page-header-search .ant-input-affix-wrapper {
+  border-radius: 8px;
+  border-color: var(--color-border);
+  height: 40px;
+}
+
+.page-header-search .ant-input-affix-wrapper .ant-input {
+  height: 38px;
+}
+
+.page-header-search .ant-input-affix-wrapper:hover,
+.page-header-search .ant-input-affix-wrapper-focused {
+  border-color: var(--color-primary);
+}
+
+.page-header-btn-secondary {
+  height: 40px;
+  border-radius: 8px;
+  font-weight: 500;
+  border-color: var(--color-border);
+}
+
+.page-header-btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.page-header-btn-primary {
+  height: 40px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: #000 !important;
+  border-color: #000 !important;
+}
+
+.page-header-btn-primary:hover {
+  background: #222 !important;
+  border-color: #222 !important;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 0 16px;
+  }
+
+  .page-header-container {
+    gap: 12px;
+  }
+
+  .page-header-search {
+    width: 200px;
+  }
+
+  .page-header-btn-secondary span,
+  .page-header-btn-primary span {
+    display: none;
+  }
+}

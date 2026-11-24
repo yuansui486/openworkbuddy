@@ -1,0 +1,152 @@
+.cron-editor {
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+}
+
+.cron-mode-switch {
+  margin-bottom: 16px;
+}
+
+.cron-preset-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cron-preset-item {
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cron-preset-item:hover {
+  border-color: #1677ff;
+  background: #f5f9ff;
+}
+
+.cron-preset-item.active {
+  border-color: #1677ff;
+  background: #e6f4ff;
+}
+
+.preset-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #262626;
+  margin-bottom: 2px;
+}
+
+.preset-desc {
+  font-size: 11px;
+  color: #8c8c8c;
+}
+
+.cron-visual-editor {
+  background: white;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.visual-section {
+  margin-bottom: 16px;
+}
+
+.visual-section:last-child {
+  margin-bottom: 0;
+}
+
+.visual-section label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #595959;
+  margin-bottom: 8px;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: #8c8c8c;
+  margin-top: 4px;
+}
+
+.cron-custom-editor {
+  background: white;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.custom-input-wrapper {
+  margin-bottom: 12px;
+}
+
+.cron-help {
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.help-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #595959;
+  margin-bottom: 8px;
+}
+
+.help-content {
+  font-size: 12px;
+  color: #8c8c8c;
+  line-height: 1.6;
+}
+
+.help-content code {
+  padding: 2px 6px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #d73a49;
+}
+
+.cron-preview {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.preview-label {
+  font-size: 13px;
+  color: #595959;
+  margin-right: 8px;
+}
+
+.cron-expression {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.expr-label {
+  margin-right: 8px;
+}
+
+.cron-expression code {
+  padding: 4px 8px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: #d73a49;
+}

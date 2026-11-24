@@ -1,0 +1,80 @@
+/* 聊天输入工具栏 */
+.chat-input-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-container);
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.toolbar-btn:hover {
+  background: var(--color-bg-layout) !important;
+  color: var(--color-primary) !important;
+}
+
+.toolbar-btn.send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary) !important;
+  color: white !important;
+}
+
+.toolbar-btn.send-btn:hover {
+  background: var(--color-primary-hover) !important;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(30, 173, 111, 0.3);
+}
+
+.toolbar-btn.send-btn:active {
+  transform: scale(0.98);
+}
+
+.toolbar-btn:active {
+  transform: scale(0.95);
+}
+
+.toolbar-btn .anticon {
+  font-size: 20px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .chat-input-toolbar {
+    padding: 6px 8px;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    gap: 2px;
+  }
+
+  .toolbar-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .toolbar-btn .anticon {
+    font-size: 14px;
+  }
+}

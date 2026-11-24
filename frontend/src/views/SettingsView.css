@@ -1,0 +1,105 @@
+/* Accio Work SettingsView 精确复刻 */
+
+.settings-view {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 设置卡片（16px 圆角）⭐ */
+.settings-view .ant-card {
+  border-radius: var(--radius-xl) !important;
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+  margin-bottom: 24px;
+}
+
+.settings-view .ant-card-head {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 16px 24px;
+}
+
+.settings-view .ant-card-head-title {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-view .ant-card-body {
+  padding: 24px;
+}
+
+/* 表单输入框（8px 圆角）*/
+.settings-view .ant-input,
+.settings-view .ant-input-password,
+.settings-view .ant-input-number {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.settings-view .ant-input:focus,
+.settings-view .ant-input-password:focus,
+.settings-view .ant-input-number:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(30, 173, 111, 0.1);
+}
+
+/* 按钮 */
+.settings-view .ant-btn {
+  border-radius: var(--radius-md) !important;
+  height: 36px;
+  padding: 0 16px;
+  font-weight: var(--font-weight-medium);
+}
+
+/* 认证状态框 */
+.auth-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-container);
+}
+
+.auth-status.connected {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+}
+
+.auth-status.connected .anticon {
+  color: var(--color-success);
+}
+
+.auth-status.disconnected {
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+}
+
+.auth-status.disconnected .anticon {
+  color: var(--color-warning);
+}
+
+.auth-status .anticon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.auth-status > div {
+  flex: 1;
+}
+
+.auth-status .ant-btn {
+  flex-shrink: 0;
+}
+
+/* 提示信息 */
+.settings-view .ant-alert {
+  border-radius: var(--radius-md) !important;
+}
