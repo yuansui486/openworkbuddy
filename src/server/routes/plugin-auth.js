@@ -107,14 +107,14 @@ router.post('/:pluginId/auth/start', async (req, res) => {
 
     // 生成 state
     const state = Math.random().toString(36).substring(7);
-    
-    // 生成授权 URL
-    const authUrl = plugin.oauth.generateAuthUrl({ state });
+
+    // 生成授权 URL（返回对象）
+    const authResult = plugin.oauth.generateAuthUrl({ state });
 
     res.json({
       success: true,
-      authUrl,
-      state
+      authUrl: authResult.authUrl || authResult.url,
+      state: authResult.state || state
     });
   } catch (error) {
     console.error('[PluginAuth] 启动授权失败:', error);
